@@ -3,7 +3,7 @@
 #include<stdlib.h>
 #include<time.h>
 
-int merge_tmp[500] = { NULL, }; // ÀúÀå º¯¼ö
+int merge_tmp[500] = { NULL, }; // ì €ì¥ ë³€ìˆ˜
 void Merge(int A[], int p, int q, int r, int n) {
 	int i = p, j = q + 1, t = 0;
 	int cnt = 0;
@@ -31,16 +31,16 @@ void Merge(int A[], int p, int q, int r, int n) {
 	while (i <= r)
 		A[i++] = merge_tmp[t++];
 
-	printf("º´ÇÕ: ");
+	printf("ë³‘í•©: ");
 	for (int a = p; a <= r; a++)
 		printf("%d ", A[a]);
-	printf(" (%d ºñ±³)\n", cnt);
+	printf(" (%d ë¹„êµ)\n", cnt);
 
 }
 
 void MergeSort(int A[], int p, int r, int n) {
 	int q;
-	printf("ºñ±³ ¹üÀ§ >> ");
+	printf("ë¹„êµ ë²”ìœ„ >> ");
 	for (int a = p; a <= r; a++)
 		printf("%d ", A[a]);
 	printf("\n");
@@ -50,7 +50,7 @@ void MergeSort(int A[], int p, int r, int n) {
 		MergeSort(A, q + 1, r, n);
 		Merge(A, p, q, r, n);
 		printf("\n--------------------------------\n");
-		printf("º´ÇÕ Á¤·Ä: ");
+		printf("ë³‘í•© ì •ë ¬: ");
 		for (int a = 1; a <= n; a++) {
 			if (a == p) printf("< ");
 			printf("%d ", A[a]);
@@ -66,7 +66,7 @@ void MergeSort(int A[], int p, int r, int n) {
 		printf(" (end)\n");
 
 		printf("\n--------------------------------\n");
-		printf("º´ÇÕ Á¤·Ä: ");
+		printf("ë³‘í•© ì •ë ¬: ");
 		for (int a = 1; a <= n; a++) {
 			if (a == p) printf("< ");
 			printf("%d ", A[a]);
@@ -83,16 +83,16 @@ void MaxHeapify(int A[], int k, int n) {
 	int bigger;
 	int temp;
 	if (left <= n && right <= n) {
-		printf("ÇöÀç ³ëµå: %d\n", A[k]);
-		printf("¿ŞÂÊ: %d, ¿À¸¥ÂÊ: %d\n", A[left], A[right]);
+		printf("í˜„ì¬ ë…¸ë“œ: %d\n", A[k]);
+		printf("ì™¼ìª½: %d, ì˜¤ë¥¸ìª½: %d\n", A[left], A[right]);
 	}
 	else if (left <= n) {
-		printf("ÇöÀç ³ëµå: %d\n", A[k]);
-		printf("¿ŞÂÊ: %d, ¿À¸¥ÂÊ: NULL\n\n", A[left]);
+		printf("í˜„ì¬ ë…¸ë“œ: %d\n", A[k]);
+		printf("ì™¼ìª½: %d, ì˜¤ë¥¸ìª½: NULL\n\n", A[left]);
 	}
 	else {
-		printf("ÇöÀç ³ëµå: %d\n", A[k]);
-		printf("¿ŞÂÊ: NULL, ¿À¸¥ÂÊ: NULL\n\n");
+		printf("í˜„ì¬ ë…¸ë“œ: %d\n", A[k]);
+		printf("ì™¼ìª½: NULL, ì˜¤ë¥¸ìª½: NULL\n\n");
 	}
 
 	if (right <= n) {
@@ -110,7 +110,7 @@ void MaxHeapify(int A[], int k, int n) {
 
 	if (A[bigger] > A[k]) {
 		printf("\n--------------------------------\n");
-		printf("\n%d¿Í %d °ª ±³È¯\n", A[k], A[bigger]);
+		printf("\n%dì™€ %d ê°’ êµí™˜\n", A[k], A[bigger]);
 		for (int a = 1; a <= n; a++)
 			if (a == k) printf("[%d] ", A[k]);
 			else if (a == bigger) printf("[%d] ", A[bigger]);
@@ -134,7 +134,7 @@ void MaxBuildHeap(int A[], int n) {
 		MaxHeapify(A, i, n);
 	}
 	printf("\n--------------------------------\n");
-	printf("ÃÊ±â Èü >> ");
+	printf("ì´ˆê¸° í™ >> ");
 	for (int a = 1; a <= n; a++)
 		printf("%d ", A[a]);
 	printf("\n--------------------------------\n\n");
@@ -143,12 +143,12 @@ void MaxBuildHeap(int A[], int n) {
 void MaxHeapSort(int A[], int n) {
 	int temp;
 	MaxBuildHeap(A, n);
-	for (int i = n; i >= 1; i--) { // n¹ø ¹İº¹ÇØ¾ßÇÔ O(n)
+	for (int i = n; i >= 1; i--) { // në²ˆ ë°˜ë³µí•´ì•¼í•¨ O(n)
 		temp = A[1];
 		A[1] = A[i];
 		A[i] = temp;
 		printf("--------------------------------\n");
-		printf("Èü Á¤·Ä >> ");
+		printf("í™ ì •ë ¬ >> ");
 		for (int a = 1; a <= n; a++)
 			if (a == i) printf("| %d ", A[a]);
 			else printf("%d ", A[a]);
@@ -167,30 +167,30 @@ void MaxHeapSort(int A[], int n) {
 
 int array_print() {
 	int num = 0;
-	printf("\n<<<<<<<<<<ÀúÀå ¹æ¹ı>>>>>>>>>>\n\n");
-	printf("1. Á÷Á¢ ÀÔ·Â\n");
-	printf("2. ·£´ı ÀÔ·Â\n");
-	printf("3. Á¾·á\n");
-	printf("ÀÔ·Â: "); scanf("%d", &num);
+	printf("\n<<<<<<<<<<ì €ì¥ ë°©ë²•>>>>>>>>>>\n\n");
+	printf("1. ì§ì ‘ ì…ë ¥\n");
+	printf("2. ëœë¤ ì…ë ¥\n");
+	printf("3. ì¢…ë£Œ\n");
+	printf("ì…ë ¥: "); scanf("%d", &num);
 	return num;
 }
 
 void Array(int num) {
 	srand((unsigned int)time(NULL));
 	int n = 0;
-	printf("\n#ÀúÀå°³¼ö(Á¾·á:0): "); scanf("%d", &n);
+	printf("\n#ì €ì¥ê°œìˆ˜(ì¢…ë£Œ:0): "); scanf("%d", &n);
 	if (n == 0) {
-		printf("Á¾·áÇÕ´Ï´Ù.\n");
+		printf("ì¢…ë£Œí•©ë‹ˆë‹¤.\n");
 		return 0;
 	}
 	int* A = (int*)malloc(sizeof(int) * (n));
-	A[0] = NULL; // 1ºÎÅÍ ÀúÀå
+	A[0] = NULL; // 1ë¶€í„° ì €ì¥
 
 	int num2;
 	num2 = array_print();
 	if (num2 == 1) {
 		for (int i = 1; i <= n; i++) {
-			printf("ÀÔ·Â(index:%d): ", i);
+			printf("ì…ë ¥(index:%d): ", i);
 			scanf("%d", &A[i]);
 		}
 	}
@@ -199,41 +199,41 @@ void Array(int num) {
 			A[i] = (rand() % 99 + 1);
 	}
 	else if (num2 == 3) {
-		printf("Á¾·áÇÕ´Ï´Ù.\n");
+		printf("ì¢…ë£Œí•©ë‹ˆë‹¤.\n");
 		return 0;
 	}
 	else {
-		printf("Àß¸øÀÔ·ÂÇÏ¼Ì½À´Ï´Ù.");
+		printf("ì˜ëª»ì…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤.");
 		while (getchar() != '\n');
 		return 0;
 	}
 
 	if (num == 1) {
-		printf("\n<<<<<<<<<<º´ÇÕ Á¤·Ä ¼öÇà>>>>>>>>>>>\n");
+		printf("\n<<<<<<<<<<ë³‘í•© ì •ë ¬ ìˆ˜í–‰>>>>>>>>>>>\n");
 
 		printf("\n--------------------------------\n");
-		printf("Á¤·ÄÇÒ ¿ø¼Ò: ");
+		printf("ì •ë ¬í•  ì›ì†Œ: ");
 		for (int i = 1; i <= n; i++)
 			printf("%d ", A[i]);
 		printf("\n--------------------------------\n\n");
 
 		MergeSort(A, 1, n, n);
-		printf("==> ÃÖÁ¾ Á¤·Ä: ");
+		printf("==> ìµœì¢… ì •ë ¬: ");
 		for (int a = 1; a <= n; a++)
 			printf("%d ", A[a]);
 		printf("\n");
 	}
 	else if (num == 2) {
-		printf("\n<<<<<<<<<<Èü Á¤·Ä ¼öÇà>>>>>>>>>>>\n");
+		printf("\n<<<<<<<<<<í™ ì •ë ¬ ìˆ˜í–‰>>>>>>>>>>>\n");
 
 		printf("\n--------------------------------\n");
-		printf("Á¤·ÄÇÒ ¿ø¼Ò: ");
+		printf("ì •ë ¬í•  ì›ì†Œ: ");
 		for (int i = 1; i <= n; i++)
 			printf("%d ", A[i]);
 		printf("\n--------------------------------\n");
 
 		MaxHeapSort(A, n);
-		printf("==> ÃÖÁ¾ Á¤·Ä: ");
+		printf("==> ìµœì¢… ì •ë ¬: ");
 		for (int a = 1; a <= n; a++)
 			printf("%d ", A[a]);
 		printf("\n");
@@ -243,11 +243,11 @@ void Array(int num) {
 
 int main_print() {
 	int num = 0;
-	printf("\n<<<<<<<<<<Á¤·Ä>>>>>>>>>>\n\n");
-	printf("1. º´ÇÕ Á¤·Ä\n");
-	printf("2. Èü Á¤·Ä(max)\n");
-	printf("3. Á¾·á\n");
-	printf("ÀÔ·Â: "); scanf("%d", &num);
+	printf("\n<<<<<<<<<<ì •ë ¬>>>>>>>>>>\n\n");
+	printf("1. ë³‘í•© ì •ë ¬\n");
+	printf("2. í™ ì •ë ¬(max)\n");
+	printf("3. ì¢…ë£Œ\n");
+	printf("ì…ë ¥: "); scanf("%d", &num);
 	return num;
 }
 
@@ -261,11 +261,11 @@ int main() {
 			Array(num);
 			break;
 		case 3:
-			printf("Á¾·áÇÕ´Ï´Ù.\n");
+			printf("ì¢…ë£Œí•©ë‹ˆë‹¤.\n");
 			return 0;
 			break;
 		default:
-			printf("Àß¸øÀÔ·ÂÇÏ¼Ì½À´Ï´Ù.");
+			printf("ì˜ëª»ì…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤.");
 			while (getchar() != '\n');
 			break;
 		}
