@@ -6,9 +6,9 @@
 #define MAX_STACK_SIZE 100
 
 
-typedef char element;		// ±³Ã¼!
-							// Â÷ÈÄ¿¡ ½ºÅÃÀÌ ÇÊ¿äÇÏ¸é ¿©±â¸¸ º¹»çÇÏ¿© ºÙÀÎ´Ù. 
-							// ===== ½ºÅÃ ÄÚµåÀÇ ½ÃÀÛ ===== 
+typedef char element;		// êµì²´!
+							// ì°¨í›„ì— ìŠ¤íƒì´ í•„ìš”í•˜ë©´ ì—¬ê¸°ë§Œ ë³µì‚¬í•˜ì—¬ ë¶™ì¸ë‹¤. 
+							// ===== ìŠ¤íƒ ì½”ë“œì˜ ì‹œì‘ ===== 
 
 
 typedef struct {
@@ -16,54 +16,54 @@ typedef struct {
 	int top;
 } StackType;
 
-// ½ºÅÃ ÃÊ±âÈ­ ÇÔ¼ö
+// ìŠ¤íƒ ì´ˆê¸°í™” í•¨ìˆ˜
 void init_stack(StackType* s)
 {
 	s->top = -1;
 }
 
-// °ø¹é »óÅÂ °ËÃâ ÇÔ¼ö
+// ê³µë°± ìƒíƒœ ê²€ì¶œ í•¨ìˆ˜
 int is_empty(StackType* s)
 {
 	return (s->top == -1);
 }
-// Æ÷È­ »óÅÂ °ËÃâ ÇÔ¼ö
+// í¬í™” ìƒíƒœ ê²€ì¶œ í•¨ìˆ˜
 int is_full(StackType* s)
 {
 	return (s->top == (MAX_STACK_SIZE - 1));
 }
-// »ğÀÔÇÔ¼ö
+// ì‚½ì…í•¨ìˆ˜
 void push(StackType* s, element item)
 {
 	if (is_full(s)) {
-		fprintf(stderr, "½ºÅÃ Æ÷È­ ¿¡·¯\n");
+		fprintf(stderr, "ìŠ¤íƒ í¬í™” ì—ëŸ¬\n");
 		return;
 	}
 	else s->data[++(s->top)] = item;
 }
-// »èÁ¦ÇÔ¼ö
+// ì‚­ì œí•¨ìˆ˜
 element pop(StackType* s)
 {
 	if (is_empty(s)) {
-		fprintf(stderr, "½ºÅÃ °ø¹é ¿¡·¯\n");
+		fprintf(stderr, "ìŠ¤íƒ ê³µë°± ì—ëŸ¬\n");
 		exit(1);
 	}
 	else return s->data[(s->top)--];
 }
-// ÇÇÅ©ÇÔ¼ö
+// í”¼í¬í•¨ìˆ˜
 element peek(StackType* s)
 {
 	if (is_empty(s)) {
-		fprintf(stderr, "½ºÅÃ °ø¹é ¿¡·¯\n");
+		fprintf(stderr, "ìŠ¤íƒ ê³µë°± ì—ëŸ¬\n");
 		exit(1);
 	}
 	else return s->data[s->top];
 }
-// ===== ½ºÅÃ ÄÚµåÀÇ ³¡ ===== 
+// ===== ìŠ¤íƒ ì½”ë“œì˜ ë ===== 
 
 
 
-// ¿¬»êÀÚÀÇ ¿ì¼±¼øÀ§¸¦ ¹İÈ¯ÇÑ´Ù.
+// ì—°ì‚°ìì˜ ìš°ì„ ìˆœìœ„ë¥¼ ë°˜í™˜í•œë‹¤.
 int prec(char op)
 {
 	switch (op) {
@@ -73,23 +73,23 @@ int prec(char op)
 	}
 	return -1;
 }
-// ÁßÀ§ Ç¥±â ¼ö½Ä -> ÈÄÀ§ Ç¥±â ¼ö½Ä
+// ì¤‘ìœ„ í‘œê¸° ìˆ˜ì‹ -> í›„ìœ„ í‘œê¸° ìˆ˜ì‹
 void infix_to_postfix(char exp[])
 {
-	int i = 0, j = 0; //Ãß°¡
+	int i = 0, j = 0; //ì¶”ê°€
 	char ch, top_op;
-	char temp, exp2[20]; // Ãß°¡
+	char temp, exp2[20]; // ì¶”ê°€
 	int len = strlen(exp);
 	StackType s;
 
-	init_stack(&s);					// ½ºÅÃ ÃÊ±âÈ­ 
+	init_stack(&s);					// ìŠ¤íƒ ì´ˆê¸°í™” 
 	for (i = 0; i < len; i++) {
 		ch = exp[i];
 		switch (ch) {
-		case '+': case '-': case '*': case '/': // ¿¬»êÀÚ
-											// ½ºÅÃ¿¡ ÀÖ´Â ¿¬»êÀÚÀÇ ¿ì¼±¼øÀ§°¡ ´õ Å©°Å³ª °°À¸¸é Ãâ·Â
+		case '+': case '-': case '*': case '/': // ì—°ì‚°ì
+											// ìŠ¤íƒì— ìˆëŠ” ì—°ì‚°ìì˜ ìš°ì„ ìˆœìœ„ê°€ ë” í¬ê±°ë‚˜ ê°™ìœ¼ë©´ ì¶œë ¥
 			while (!is_empty(&s) && (prec(ch) <= prec(peek(&s))))
-			{	///Ãß°¡
+			{	///ì¶”ê°€
 				temp = pop(&s);
 				printf("%c", temp);
 				exp2[j++] = temp;
@@ -97,12 +97,12 @@ void infix_to_postfix(char exp[])
 
 			push(&s, ch);
 			break;
-		case '(':	// ¿ŞÂÊ °ıÈ£
+		case '(':	// ì™¼ìª½ ê´„í˜¸
 			push(&s, ch);
 			break;
-		case ')':	// ¿À¸¥ÂÊ °ıÈ£
+		case ')':	// ì˜¤ë¥¸ìª½ ê´„í˜¸
 			top_op = pop(&s);
-			// ¿ŞÂÊ °ıÈ£¸¦ ¸¸³¯¶§±îÁö Ãâ·Â
+			// ì™¼ìª½ ê´„í˜¸ë¥¼ ë§Œë‚ ë•Œê¹Œì§€ ì¶œë ¥
 			while (top_op != '(') {
 				temp = top_op;
 				printf("%c", temp);
@@ -110,16 +110,16 @@ void infix_to_postfix(char exp[])
 				top_op = pop(&s);
 			}
 			break;
-		default:		// ÇÇ¿¬»êÀÚ
+		default:		// í”¼ì—°ì‚°ì
 			temp = ch;
 			printf("%c", temp);
 			exp2[j++] = temp;
 			break;
 		}
 	}
-	while (!is_empty(&s))	// ½ºÅÃ¿¡ ÀúÀåµÈ ¿¬»êÀÚµé Ãâ·Â
+	while (!is_empty(&s))	// ìŠ¤íƒì— ì €ì¥ëœ ì—°ì‚°ìë“¤ ì¶œë ¥
 	{
-		temp = pop(&s); //Ãß°¡
+		temp = pop(&s); //ì¶”ê°€
 		printf("%c", temp);
 		exp2[j++] = temp;
 	}
@@ -139,13 +139,13 @@ int eval(char exp[])
 	for (i = 0; i < len; i++) {
 		ch = exp[i];
 		if (ch != '+' && ch != '-' && ch != '*' && ch != '/') {
-			value = ch - '0';	// ÀÔ·ÂÀÌ ÇÇ¿¬»êÀÚÀÌ¸é
+			value = ch - '0';	// ì…ë ¥ì´ í”¼ì—°ì‚°ìì´ë©´
 			push(&s, value);
 		}
-		else {	//¿¬»êÀÚÀÌ¸é ÇÇ¿¬»êÀÚ¸¦ ½ºÅÃ¿¡¼­ Á¦°Å
+		else {	//ì—°ì‚°ìì´ë©´ í”¼ì—°ì‚°ìë¥¼ ìŠ¤íƒì—ì„œ ì œê±°
 			op2 = pop(&s);
 			op1 = pop(&s);
-			switch (ch) { //¿¬»êÀ» ¼öÇàÇÏ°í ½ºÅÃ¿¡ ÀúÀå 
+			switch (ch) { //ì—°ì‚°ì„ ìˆ˜í–‰í•˜ê³  ìŠ¤íƒì— ì €ì¥ 
 			case '+': push(&s, op1 + op2); break;
 			case '-': push(&s, op1 - op2); break;
 			case '*': push(&s, op1 * op2); break;
@@ -162,15 +162,15 @@ int main(void)
 	char* exp;
 	exp = (char*)malloc(sizeof(char) * 20);
 
-	printf("ÁßÀ§Ç¥±â½ÄÀº? ");
+	printf("ì¤‘ìœ„í‘œê¸°ì‹ì€? ");
 	gets(exp);	
 
 
-		printf("ÈÄÀ§Ç¥±â½ÄÀº? ");
+		printf("í›„ìœ„í‘œê¸°ì‹ì€? ");
 		infix_to_postfix(exp);
 
 		result = eval(exp);
-		printf("\n°á°ú°ªÀº %d\n", result);
+		printf("\nê²°ê³¼ê°’ì€ %d\n", result);
 	
 	return 0;
 }
